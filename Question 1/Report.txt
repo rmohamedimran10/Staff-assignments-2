@@ -1,0 +1,4 @@
+--- Submission Processing Report ---
+Files Processed: 15
+Duplicates Found: 3
+Unique Files Backed Up: 12
