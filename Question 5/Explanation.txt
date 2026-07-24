@@ -1,0 +1,4 @@
+Undo History & Registers: Both of these mechanisms store data (past actions or copied/deleted text) in the system's volatile RAM. Because a system crash completely wipes RAM, these mechanisms are entirely useless for crash recovery.
+ Backup Files: While ⁠vi⁠ can be configured to create backup files (usually ending in ⁠~⁠), these only preserve the state of the file as it was before the editing session began (or at the last manual save). They do not contain the un-saved edits the developer was actively working on when the crash occurred.
+ Swap Files (⁠.swp⁠): This is an active, hidden file that ⁠vi⁠ creates automatically to periodically write buffer changes to the physical disk as you type.
+ Auto-Recovery: This isn't a separate mechanism but rather a feature that prompts the user to utilize the existing swap file if they attempt to open the crashed file normally.
