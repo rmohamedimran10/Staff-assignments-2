@@ -1,0 +1,4 @@
+Using swap file ".critical_config.conf.swp"
+Original file "critical_config.conf"
+Recovery completed. You should check if everything is OK.
+(Press RETURN)
