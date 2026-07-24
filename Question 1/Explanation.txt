@@ -1,0 +1,18 @@
+1. Directory and Log Setup (⁠mkdir -p⁠, ⁠>⁠)
+ Command execution: ⁠mkdir -p "$BACKUP_DIR" 2>> "$ERROR_FILE"⁠ and ⁠> "$REPORT_FILE"⁠
+ Explanation: I used ⁠mkdir -p⁠ to safely create the backup directory without returning an error if it already existed, routing any standard errors (⁠2>>⁠) to ⁠errors.log⁠. I then used standard output redirection (⁠>⁠) to clear previous data from the report and error logs to prepare for a fresh run.
+2. Temporary File Creation (⁠mktemp⁠)
+ Command execution: ⁠seen_hashes=$(mktemp)⁠
+ Explanation: I executed ⁠mktemp⁠ to securely generate a temporary file to store the unique hash signatures of each submission. This ensures I have an isolated space to track duplicates without cluttering the working directory.
+3. Content Hashing and Text Extraction (⁠md5sum⁠, ⁠awk⁠)
+ Command execution: ⁠file_hash=$(md5sum "$file" 2>> "$ERROR_FILE" | awk '{print $1}')⁠
+ Explanation: I used ⁠md5sum⁠ to calculate a unique mathematical hash of the file's contents, allowing me to detect duplicates accurately even if students renamed their files. I piped (⁠|⁠) this output into ⁠awk⁠ to extract just the hash string, making it clean for later comparison.
+4. Duplicate Searching (⁠grep⁠)
+ Command execution: ⁠grep -q "^$file_hash$" "$seen_hashes"⁠
+ Explanation: I used ⁠grep -q⁠ to quietly search the temporary file for the current file's hash without printing anything to the terminal. If the hash was found, the script identified it as a duplicate; otherwise, it moved on to back up the file.
+5. File Backup (⁠cp⁠)
+ Command execution: ⁠cp "$file" "$BACKUP_DIR/" 2>> "$ERROR_FILE"⁠
+ Explanation: I used the ⁠cp⁠ command to duplicate the unique submissions into the designated backup folder. I utilized the append error redirection operator (⁠2>>⁠) to ensure any file permission or copying errors were logged silently rather than interrupting the terminal output.
+6. Cleanup and Final Reporting (⁠rm⁠, ⁠{}⁠)
+ Command execution: ⁠rm -f "$seen_hashes"⁠ and ⁠{ echo ... } > "$REPORT_FILE"⁠
+ Explanation: I executed ⁠rm -f⁠ to cleanly remove the temporary hash file from the system once processing concluded. Finally, I grouped multiple ⁠echo⁠ statements using curly braces ⁠{}⁠ to redirect their combined output directly into ⁠report.txt⁠ for a clean summary.
