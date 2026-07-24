@@ -1,0 +1,3 @@
+Process Creation (⁠fork⁠): I used the ⁠fork()⁠ system call to duplicate the main server process, allowing the child to handle a simulated web request independently without blocking the main server.
+ Signal Handling (⁠kill⁠): Because the child process entered an unresponsive infinite loop, the parent used the ⁠kill()⁠ function to send a ⁠SIGKILL⁠ signal, forcing the operating system to forcefully terminate the hung process.
+ Waiting (⁠waitpid⁠): To prevent the terminated child from becoming a resource-draining "zombie," the parent executed ⁠waitpid()⁠ immediately after sending the kill signal to retrieve the child's exit status and formally remove it from the system's process table.
