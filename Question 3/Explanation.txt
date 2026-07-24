@@ -1,0 +1,5 @@
+open()⁠: I utilized ⁠open()⁠ with ⁠O_CREAT⁠ and strict permission flags (⁠S_IRUSR | S_IWUSR⁠) to establish a secure file environment exclusively accessible by the owner.
+ ⁠write()⁠: This system call writes the raw bytes of our ⁠Employee⁠ structs directly to the disk, bypassing any standard library buffering to ensure immediate data commitment.
+ ⁠lseek()⁠: This is the core of the efficiency requirement. By using ⁠lseek()⁠, we expedite (make an action happen sooner or be accomplished more quickly) data retrieval. Similar to a pull marketing strategy where you directly target and draw in the specific consumer you want rather than pushing a message out to everyone, ⁠lseek()⁠ bypasses the rest of the file and jumps directly to the exact byte offset of the target record.
+ ⁠read()⁠: Working in tandem with ⁠lseek()⁠, ⁠read()⁠ efficiently extracts only the bytes for the specific target record without having to parse the entire file line-by-line.
+ ⁠close()⁠: This finalizes operations and releases the file descriptor back to the operating system, ensuring no memory or data leaks occur.
