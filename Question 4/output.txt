@@ -1,0 +1,2 @@
+Aug 14 10:24:01 server-web app: ERROR - Database connection timeout
+Aug 14 10:24:15 server-web app: ERROR - Failed to load payment gateway API
