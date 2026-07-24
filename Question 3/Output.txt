@@ -1,0 +1,4 @@
+Secure file created successfully.
+Initial employee records written.
+Record 2 updated directly on disk.
+Retrieved - ID: 2, Name: Bob, Salary: 65500.00
